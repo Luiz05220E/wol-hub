@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>WoL Hub</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="top-bar-row1">
+        <div id="app-brand">
+            <span id="app-brand-icon-wrap"><img id="app-brand-icon-img" src="build/icon.png" alt=""></span>
+            <div id="app-brand-text">
+                <div id="app-brand-title">WoL <span id="app-brand-accent">Hub</span></div>
+                <div id="app-brand-tagline">FERRAMENTAS PRA JOGAR MELHOR</div>
+            </div>
+        </div>
+        <div id="top-bar-actions">
+            <div id="total-ram">— MB total</div>
+            <button id="fullscreen-btn" class="icon-btn" type="button" title="Tela cheia (F11)">⛶</button>
+            <button id="export-btn" class="icon-btn" type="button" title="Exportar configuração">⤓</button>
+            <button id="import-btn" class="icon-btn" type="button" title="Importar configuração">⤒</button>
+        </div>
+    </div>
+    <div id="top-bar-row2">
+        <button id="back-btn" class="icon-btn hidden" type="button" title="Voltar pra lista de jogos">←</button>
+        <div id="current-game-header" class="hidden">
+            <span id="current-game-icon-wrap" class="icon-orbit-frame"><img id="current-game-icon" src="" alt=""></span>
+            <span id="current-game-name"></span>
+            <button id="current-game-edit-btn" class="game-edit-btn" type="button" title="Editar jogo">✎</button>
+        </div>
+        <div id="games-row"></div>
+        <button id="add-site-btn" type="button" title="Novo jogo">+ Jogo</button>
+    </div>
+
+    <!-- Tela inicial: lista de jogos (cards) -->
+    <div id="games-home"></div>
+
+    <!-- Painel da conta (estilo Idle Labs): chrome HTML de verdade.
+         A WebContentsView só preenche #game-viewport — título + borda
+         envolvem o jogo por dentro, não uma moldura desenhada por fora. -->
+    <div id="game-panel" class="hidden">
+        <div id="account-strip">
+            <span id="account-strip-icon-wrap"><img id="account-strip-icon" src="" alt=""></span>
+            <span id="account-strip-name"></span>
+            <span id="account-strip-stats"><span id="account-strip-dot" class="status-dot"></span><span id="account-strip-ms"></span> · <span id="account-strip-ram"></span></span>
+            <button id="account-strip-reload-btn" class="icon-btn" type="button" title="Recarregar (reconecta o proxy também, se tiver um configurado)">⟳</button>
+            <button id="account-strip-edit-btn" class="icon-btn" type="button" title="Editar conta">✎</button>
+            <button id="account-strip-close-btn" class="icon-btn" type="button" title="Remover conta">×</button>
+        </div>
+        <div id="game-viewport"></div>
+    </div>
+
+    <!-- Popover: novo jogo -->
+    <div id="add-site-popover" class="popover hidden">
+        <div class="popover-title" id="site-popover-title">Novo jogo</div>
+        <input id="site-name-input" type="text" placeholder="Nome do jogo (ex: Baiak Idle)" autocomplete="off">
+        <div class="popover-icon-label">Ícone</div>
+        <div id="site-icon-picker"></div>
+        <div class="popover-icon-label">Cor</div>
+        <div id="site-color-picker"></div>
+        <div class="popover-actions">
+            <button class="btn-secondary" id="site-cancel-btn" type="button">Cancelar</button>
+            <button class="btn-primary" id="site-confirm-btn" type="button">Criar</button>
+        </div>
+    </div>
+
+    <!-- Popover: nova conta (recebe siteId dinamicamente) -->
+    <div id="add-account-popover" class="popover hidden">
+        <div class="popover-title" id="account-popover-title">Nova conta</div>
+        <input id="account-name-input" type="text" placeholder="Nome da conta (ex: Main)" autocomplete="off">
+        <input id="account-url-input" type="text" placeholder="URL do jogo (ex: https://huntera.com.br)" autocomplete="off">
+        <input id="account-proxy-input" type="text" placeholder="Proxy (opcional): http://user:senha@host:porta" autocomplete="off">
+        <div id="account-icon-section" class="hidden">
+            <div class="popover-icon-label">Ícone dessa conta (opcional — sem escolher, usa o do jogo). A cor sempre segue a do jogo.</div>
+            <div id="account-icon-picker"></div>
+        </div>
+        <div class="popover-actions">
+            <button class="btn-secondary" id="account-cancel-btn" type="button">Cancelar</button>
+            <button class="btn-primary" id="account-confirm-btn" type="button">Adicionar</button>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

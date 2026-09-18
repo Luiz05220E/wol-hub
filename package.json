@@ -1,0 +1,63 @@
+{
+  "name": "idle-huntera-manager",
+  "version": "0.31.45",
+  "description": "Gerenciador de m\u00faltiplas contas de m\u00faltiplos jogos em janela \u00fanica, agrupadas por jogo na barra lateral, com MS/RAM por conta e economia de recursos via troca de aba nativa.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "author": "voc\u00ea + Claude",
+  "license": "ISC",
+  "dependencies": {
+    "electron-updater": "^6.3.9"
+  },
+  "devDependencies": {
+    "electron": "^41.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.vocecl.wolhub",
+    "productName": "WoL Hub",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "account-preload.js",
+      "curtain-preload.js",
+      "splash-preload.js",
+      "splash.html",
+      "renderer.js",
+      "index.html",
+      "styles.css",
+      "inject/**/*",
+      "assets/**/*",
+      "build/icon.png",
+      "build/icon-colors/**/*"
+    ],
+    "asarUnpack": [
+      "inject/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "runAfterFinish": true,
+      "include": "build/installer.nsh",
+      "deleteAppDataOnUninstall": false
+    },
+    "artifactName": "WoL-Hub-Setup-${version}.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Luiz05220E",
+        "repo": "wol-hub"
+      }
+    ]
+  }
+}
